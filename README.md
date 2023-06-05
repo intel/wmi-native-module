@@ -3,7 +3,7 @@
 The `wmi-native-module` is a native module for Node.js applications to query WMI on a local Windows system using native C++. 
 
 ## Install
-`npm install wmi-native-module`
+`npm install @intelcorp/wmi-native-module`
 
 ## Usage
 Example queries can be found in `tests\exampleQueries.js`
