@@ -27,11 +27,11 @@ There is a whitelist for supported namespaces defined in `namespaces.h`.
 
 ### Examples
 ```
-const wmi = require('wmi_native_module');
+const wmi = require('@intelcorp/wmi-native-module');
 let result = wmi.query('root/cimv2', 'SELECT * FROM Win32_Processor');
 ```
 ```
-const wmi = require('wmi_native_module');
+const wmi = require('@intelcorp/wmi-native-module');
 const properties = ['Caption', 'DeviceID', 'Manufacturer', 'MaxClockSpeed', 'Name', 'SocketDesignation'];
 const query = `SELECT ${properties.join(',')} FROM Win32_Processor`;
 let result = wmi.query('root/cimv2', query, properties);
