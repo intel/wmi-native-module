@@ -1,0 +1,9 @@
+node_modules/
+
+build
+Release
+Debug
+
+.npmrc
+
+package-lock.json

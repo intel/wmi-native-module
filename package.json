@@ -1,0 +1,16 @@
+{
+    "name": "wmi-native-module",
+    "version": "1.0.0",
+    "description": "WMI Native Module",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/intel/wmi-native-module"
+    },
+    "author": "Emily Snyder <emily.snyder@intel.com>",
+    "contributors": [],
+    "license": "MIT",
+    "dependencies": {
+        "node-addon-api": "^5.0.0"
+    }
+}
