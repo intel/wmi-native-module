@@ -35,7 +35,8 @@ function selectAllWmiTest() {
         if (keys.length === 0) {
             assert.fail();
         }
-        console.log('Win32_Processor: ' + result);
+        console.log('Win32_Processor: ');
+        console.log(result);
     } catch (error) {
         console.error(error);
         assert.fail();

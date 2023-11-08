@@ -242,7 +242,9 @@ namespace wmi_wrapper
                 NULL                         // Reserved
             );
 
-            if (FAILED(hres))
+            // RCP_E_TOO_LATE = CoInitializeSecurity has already been called by
+            // the same process, in which case will continue to create instance.
+            if (FAILED(hres) && hres != RPC_E_TOO_LATE)
             {
                 // Failed to initialize security
                 CoUninitialize();
@@ -431,7 +433,12 @@ namespace wmi_wrapper
         WmiQueryParams wstr_params = GetWstrParams(query, properties, env);
 
         std::vector<WmiQueryResult> results;
-        wmi_wrapper::Query(wmi_namespace.Utf8Value().c_str(), wstr_params, &results);
+        HRESULT hres = wmi_wrapper::Query(wmi_namespace.Utf8Value().c_str(), wstr_params, &results);
+        if (FAILED(hres))
+        {
+            std::string hresStr = std::to_string(hres);
+            Napi::Error::New(env, "Query failed with error code: " + hresStr).ThrowAsJavaScriptException();
+        }
 
         return ConvertResultsObject(results, env);
     }
