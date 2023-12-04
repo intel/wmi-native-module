@@ -10,7 +10,16 @@
       'conditions': [
         ["OS=='linux'", {"sources": [ 'src/unsupported_wmi_wrapper.cpp' ], "defines": [ "NAPI_DISABLE_CPP_EXCEPTIONS" ]}],
         ["OS=='win'", {'sources': [ 'src/wmi_wrapper.cpp' ],  "defines": [ "_HAS_EXCEPTIONS=1" ],
-          "msvs_settings": { "VCCLCompilerTool": { "ExceptionHandling": 1 , "AdditionalOptions": ['/sdl'] } },
+          "msvs_settings": { 
+            "VCCLCompilerTool": { 
+              "ExceptionHandling": 1 , 
+              'WholeProgramOptimization': 'true', 
+              'EnableFunctionLevelLinking': 'true',
+              'BufferSecurityCheck': 'true',
+              "AdditionalOptions": ['/sdl', '/Qspectre', '/guard:cf', '/W4', '/WX', '/external:W0', '/external:anglebrackets', '/DYNAMICBASE'] 
+            },
+             "VCLinkerTool": { "AdditionalOptions": [ "/guard:cf", "/CETCOMPAT", '/LTCG:INCREMENTAL' ] }
+          },
         }],
       ],
     },
