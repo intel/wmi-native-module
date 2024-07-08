@@ -99,7 +99,7 @@ namespace wmi_wrapper
         IWbemClassObject *class_object)
     {
         HRESULT hres = ERROR_SUCCESS;
-        for (int i = 0; i < properties.size(); ++i)
+        for (size_t i = 0; i < properties.size(); ++i)
         {
             std::wstring value = GetPropertyValue(properties[i], class_object);
             (*results).push_back(make_pair(properties[i], std::wstring(value)));
@@ -362,10 +362,10 @@ namespace wmi_wrapper
         Napi::Object return_values = Napi::Object::New(env);
 
         size_t results_length = results.size();
-        for (int i = 0; i < results_length; ++i)
+        for (size_t i = 0; i < results_length; ++i)
         {
             Napi::Object return_obj = Napi::Object::New(env);
-            for (int j = 0; j < results[i].size(); ++j)
+            for (size_t j = 0; j < results[i].size(); ++j)
             {
                 std::wstring wst_key = results[i][j].first;
                 std::wstring wst_value = results[i][j].second;
