@@ -102,7 +102,7 @@ namespace wmi_wrapper
         for (size_t i = 0; i < properties.size(); ++i)
         {
             std::wstring value = GetPropertyValue(properties[i], class_object);
-            (*results).push_back(make_pair(properties[i], std::wstring(value)));
+            (*results).push_back(make_pair(properties[i], std::wstring(std::move(value))));
         }
         return hres;
     }
@@ -141,7 +141,7 @@ namespace wmi_wrapper
         for (int i = start; i < end; ++i)
         {
             std::wstring value = GetPropertyValue(names[i], class_object);
-            (*results).push_back(make_pair(names[i], std::wstring(value)));
+            (*results).push_back(make_pair(names[i], std::wstring(std::move(value))));
         }
         hres = SafeArrayUnaccessData(names_array);
         return hres;
@@ -197,7 +197,7 @@ namespace wmi_wrapper
                     {
                         object_result = GetAllPropertyValues(class_objects[i], &result);
                     }
-                    results->push_back(result);
+                    results->push_back(std::move(result));
 
                     class_objects[i]->Release();
                 }
@@ -342,7 +342,7 @@ namespace wmi_wrapper
             {
                 std::string value = param_value.ToString().Utf8Value();
                 std::wstring wstr_value = ConvertStringToWstring(value);
-                wstr_properties.push_back(wstr_value);
+                wstr_properties.push_back(std::move(wstr_value));
             }
             else
             {
@@ -433,14 +433,14 @@ namespace wmi_wrapper
         WmiQueryParams wstr_params = GetWstrParams(query, properties, env);
 
         std::vector<WmiQueryResult> results;
-        HRESULT hres = wmi_wrapper::Query(wmi_namespace.Utf8Value().c_str(), wstr_params, &results);
+        HRESULT hres = wmi_wrapper::Query(wmi_namespace.Utf8Value().c_str(), std::move(wstr_params), &results);
         if (FAILED(hres))
         {
             std::string hresStr = std::to_string(hres);
             Napi::Error::New(env, "Query failed with error code: " + hresStr).ThrowAsJavaScriptException();
         }
 
-        return ConvertResultsObject(results, env);
+        return ConvertResultsObject(std::move(results), env);
     }
 
     Napi::Object Init(
