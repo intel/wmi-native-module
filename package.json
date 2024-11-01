@@ -1,6 +1,6 @@
 {
   "name": "@intelcorp/wmi-native-module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "WMI Native Module",
   "main": "index.js",
   "repository": {
@@ -11,7 +11,7 @@
   "contributors": [],
   "license": "MIT",
   "dependencies": {
-    "node-addon-api": "^7.0.0"
+    "node-addon-api": "^8.2.1"
   },
   "scripts": {
     "install": "node-gyp rebuild"
