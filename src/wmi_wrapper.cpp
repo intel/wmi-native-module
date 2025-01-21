@@ -223,6 +223,11 @@ namespace wmi_wrapper
         // Initialize COM.
         hres = CoInitializeEx(0, COINIT_MULTITHREADED);
         {
+	    if (FAILED(hres) && hres == RPC_E_CHANGED_MODE)
+	    {
+		// Was already initialized in a different mode, switch
+		hres = CoInitializeEx(0, COINIT_APARTMENTTHREADED);
+	    }
             if (FAILED(hres))
             {
                 // Failed to initialize COM library
