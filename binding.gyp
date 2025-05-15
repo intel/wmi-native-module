@@ -16,7 +16,7 @@
               'WholeProgramOptimization': 'true', 
               'EnableFunctionLevelLinking': 'true',
               'BufferSecurityCheck': 'true',
-              "AdditionalOptions": ['/sdl', '/Qspectre', '/guard:cf', '/W4', '/WX', '/external:W0', '/external:anglebrackets', '/DYNAMICBASE'] 
+              "AdditionalOptions": ['/sdl', '/Qspectre', '/guard:cf', '/W4', '/WX', '/external:W0', '/external:anglebrackets', '/DYNAMICBASE', '/NXCOMPAT', '/GS'] 
             },
              "VCLinkerTool": { "AdditionalOptions": [ "/guard:cf", "/CETCOMPAT", '/LTCG:INCREMENTAL' ] }
           },

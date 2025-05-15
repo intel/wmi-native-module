@@ -1,6 +1,6 @@
 {
   "name": "@intelcorp/wmi-native-module",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "WMI Native Module",
   "main": "index.js",
   "repository": {
