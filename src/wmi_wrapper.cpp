@@ -138,7 +138,7 @@ namespace wmi_wrapper
         }
         BSTR *names;
         hres = SafeArrayAccessData(names_array, (void HUGEP **)&names);
-        for (int i = start; i < end; ++i)
+        for (int i = start; i <= end; ++i)
         {
             std::wstring value = GetPropertyValue(names[i], class_object);
             (*results).push_back(make_pair(names[i], std::wstring(std::move(value))));
