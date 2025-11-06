@@ -34,8 +34,8 @@ namespace wmi_wrapper
     typedef std::vector<std::pair<std::wstring, std::wstring>> WmiQueryResult;
     typedef std::pair<std::wstring, std::vector<std::wstring>> WmiQueryParams;
 
-    std::wstring GetPropertyValue(std::wstring property, IWbemClassObject *class_object);
-    HRESULT GetAllValues(std::wstring query, std::vector<std::wstring> properties, std::vector<WmiQueryResult> *results, IWbemServices *service);
+    std::wstring GetPropertyValue(const std::wstring &property, IWbemClassObject *class_object);
+    HRESULT GetAllValues(const std::wstring &query, std::vector<std::wstring> properties, std::vector<WmiQueryResult> *results, IWbemServices *service);
     HRESULT GetPropertyValues(std::vector<std::wstring> properties, WmiQueryResult *results, IWbemClassObject *class_object);
     HRESULT GetAllPropertyValues(IWbemClassObject *class_object, WmiQueryResult *results);
     HRESULT Query(const char *wmi_namespace, WmiQueryParams query, std::vector<WmiQueryResult> *results);
